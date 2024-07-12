@@ -2,6 +2,7 @@ import os
 import streamlit as st
 import requests
 from api import JOB_TITLES, EDUCATION_LEVELS
+from security import safe_requests
 
 st.title('Salary Prediction System')
 
@@ -87,7 +88,7 @@ st.header("Interact with Language Model")
 def get_model_response(prompt):
     url = f"http://127.0.0.1:8000/model/"
     params = {"prompt": prompt}
-    response = requests.get(url, params=params)
+    response = safe_requests.get(url, params=params)
     return response
 
 with st.form(key='model_form'):

@@ -5,3 +5,4 @@ scikit-learn
 pandas
 numpy
 python-dotenv
+security==1.3.0
