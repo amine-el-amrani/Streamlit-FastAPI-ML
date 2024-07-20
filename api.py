@@ -161,7 +161,7 @@ def call_openai_api(prompt: str):
         "model": "gpt-3.5-turbo",
         "messages": [{"role": "user", "content": prompt}]
     }
-    response = requests.post('https://api.openai.com/v1/chat/completions', headers=headers, json=data)
+    response = requests.post('https://api.openai.com/v1/chat/completions', headers=headers, json=data, timeout=60)
     if response.status_code != 200:
         raise HTTPException(status_code=response.status_code, detail=response.json())
     return response.json()
