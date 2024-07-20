@@ -11,7 +11,7 @@ train_method = st.radio("Select training input method:", ("Upload CSV File", "Ma
 if train_method == "Upload CSV File":
     train_file = st.file_uploader("Upload CSV file to train the model", type="csv")
     if st.button("Train with CSV"):
-        train_response = requests.post("http://127.0.0.1:8000/train/", files={"file": train_file.getvalue()})
+        train_response = requests.post("http://127.0.0.1:8000/train/", files={"file": train_file.getvalue()}, timeout=60)
         if train_response.ok:
             st.success("Model trained successfully!")
         else:
@@ -28,7 +28,7 @@ elif train_method == "Manual Input":
             response = requests.post("http://127.0.0.1:8000/train/", data={
                 'age': age, 'gender': gender, 'education_level': education_level,
                 'job_title': job_title, 'years_of_experience': years_of_experience
-            })
+            }, timeout=60)
             if response.ok:
                 st.success("Model trained successfully!")
             else:
@@ -51,7 +51,7 @@ with st.form(key='predict_form'):
             'job_title': job_title,
             'years_of_experience': years_of_experience
         }
-        response = requests.post("http://127.0.0.1:8000/predict/", json=data)
+        response = requests.post("http://127.0.0.1:8000/predict/", json=data, timeout=60)
         if response.status_code == 200:
             predicted_salary = response.json()['predicted_salary']
             st.success(f"The predicted salary is: ${predicted_salary:.2f}")
