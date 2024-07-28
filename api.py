@@ -105,7 +105,7 @@ class EmployeeData(BaseModel):
 
 JOB_TITLES = [
     "Software Engineer",
-    "Web Developer"
+    "Web Developer",
     "Data Analyst",
     "UX Designer",
     "Marketing Analyst",
