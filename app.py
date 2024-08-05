@@ -86,7 +86,7 @@ with open(file_path, "rb") as fp:
 st.header("Interact with Language Model")
 
 def get_model_response(prompt):
-    url = f"http://127.0.0.1:8000/model/"
+    url = "http://127.0.0.1:8000/model/"
     params = {"prompt": prompt}
     response = safe_requests.get(url, params=params)
     return response
