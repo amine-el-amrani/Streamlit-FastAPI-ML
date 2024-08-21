@@ -7,6 +7,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV, cross_val_score
+import fickling
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -85,7 +86,7 @@ def load_model():
     model_path = os.path.join(model_directory, latest_model_file)
 
     with open(model_path, 'rb') as file:
-        return pickle.load(file)
+        return fickling.load(file)
 
 def predict_salary(model, X):
     return model.predict(X)
